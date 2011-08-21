@@ -1,0 +1,18 @@
+#!/bin/bash
+#ciscobackup: script to get the backup from all routers at the core network using the file $HOME/.ciscorouters
+#The files will be saved under $HOME/ciscobackup directory.
+#Jose Antonio Montes 2011
+
+cd $HOME/bin
+
+fecha=$(date '+%Y%m%d%H%M')
+
+echo "$fecha"
+
+mkdir -p $HOME/ciscobackup
+
+while IFS=" " read lrouter urouter dummyline
+do 
+echo "Saving config from $urouter at ${fecha}_${urouter}.txt ..."
+./saverouterconfig $lrouter | sed -e '1,$ s///g' -e '1,$ s/ --More--         //g' >$HOME/ciscobackup/${fecha}_${urouter}.txt
+done < $HOME/.ciscorouters

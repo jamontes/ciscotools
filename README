@@ -1,0 +1,86 @@
+ciscotools: scripts to make easy the everydays use of automated scripts to get administrator access to Cisco routers and switches, as well as perform timestamped backup files for each Cisco equipment on a core network.
+
+All the router/switch access info must be well defined and contained into a config file named ~/.ciscorouters.
+The ~/.ciscorouters must be useronly read access, as it contains the user and enable password in plaintext for each router/switch on the core network.
+These scripts are bash and expect scripts, and depends on xterm, ssh, telnet, bash and expect to correct execution.
+
+2011 Jose Antonio Montes. You can freely use, copy, modify, and distribute as you need without any restrictions.
+
+Please be warned that you need to know the enable passwords of all the core routers/switches defined into ~/.ciscorouters, and those passwords will be stored into that file in pure plaintext, so keep the access permission restricted only for you and nobody else.
+
+for more info on expect, please consult http://en.wikipedia.org/wiki/Expect or http://expect.nist.gov/
+
+Most of Linux distros have expect, xterm, bash, telnet and ssh available at their package repositories:
+
+For RedHat/Fedora distributions (as root):
+
+ yum install expect xterm telnet ssh bash
+
+For Ubuntu/Debian distributions (as root):
+
+ apt-get install expect xterm telnet ssh bash
+
+For other Unix-like distributions, please consult the distro documentation for package search and installation.
+
+The scripts contained here make use of the ~/.ciscorouters file, which contains all the router list along with access detail data to automate the whole thing and makes easy and fast to get access the the core routers/switches from the commandline. For an example configuration of the ~/.ciscorouters file, please consult the .ciscorouters file located into the samples directory.
+
+Scripts definition and use:
+
+* con: connects to a Cisco router/switch and opens the session into an independient xterm window on your desktop.
+
+usage: con router_nickname
+
+Note: the router_nickname (or nick_router_name, the name you give to the Cisco equipment to easy remember it), is the nick_name field contained into the ~/.ciscorouters file.
+
+It depends on bash, xterm, expect, ssh and/or telnet (depending of the connect method allowed by your router/switch).
+
+It invoques a new xterm window and calls *cs* to open the cisco session to the core router/switch with administrator (i.e. enable) access.
+
+
+
+* cs: connects to a Cisco router/switch using the same terminal session of the commandline invoqued.
+
+usage: cs router_nickname
+
+Note: the router_nickname (or nick_router_name, the name you give to the Cisco equipment to easy remember it), is the nick_name field contained into the ~/.ciscorouters file.
+
+It depends on bash, expect, ssh and/or telnet (depending of the connect method allowed by your router/switch).
+
+
+
+* ciscobackup: makes a full backup of the whole list of routers/switches defined into ~/.ciscorouters and store them into the ~/ciscobackup directory on a timestamp_equipment basis.
+
+usage: ciscobackup
+
+It depends on bash, expect, ssh and/or telnet (depending of the connect method allowed by your router/switch).
+
+It invoques the *saverouterconfig* expect script and pases the router/switch nickname found into the ~/.ciscorouters file.
+
+
+
+* saverouterconfig: connects to a Cisco router/switch and retrieves the whole running configuration from the equipment.
+
+usaege: saverouterconfig router_nickname
+
+Note: This script is mainly used by the *ciscobackup* script, but it can use separately to get an online running config of any router/switch defined into the ./ciscorouters file.
+
+Be warned that the output is free of any sort of pagination, so you can pipe the command if you like (with *more* or *less*) to get an usefull view of the router/switch configuration.
+
+
+INSTALL NOTES:
+
+To download the files contained into this project you need the Git client (use yum install git or either apt-get install git, depending of your distro)  and then, from a command line into a separated directory do:
+
+  git clone git@github.com:jamontes/ciscotools.git
+
+Then copy the script files into your bin directory, and define and populate the ~/.ciscorouters with usefull details to start using the scripts.
+
+Note: Use them without any warranty.
+
+Any suggestions and enhancements of the code would be very wellcome. Please use the Git magic to update any branches or the master branch to the public repository at github.
+
+
+TODO: 
+
+* Try to handle with encripted passwords instead of plaintext ones into the ./ciscorouters file.
+* Include more scripts for automated tasks.

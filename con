@@ -1,0 +1,12 @@
+#!/bin/bash
+#con: script to get automated administrator access by either ssh or telnet to Cisco routers and switches.
+#It uses xterm as well as expect, and invoques the "cs" expect script as well as makes use of the $HOME/.ciscorouters, where the router list and parameters are defined. 
+#Jose Antonio Montes 2011
+
+[ "$#" != "1" ] && echo "usage: $(basename $0) nick_router_name" && exit
+
+terminal=$(awk '$1 == "'$1'" {print $2}' $HOME/.ciscorouters)
+
+[ -z "$terminal" ] && echo "$1: the nickname of the router is not defined into the router list" && exit
+
+xterm -fn 6x13 -s -sb -ls -bg white -T $terminal -e cs $1 &

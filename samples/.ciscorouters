@@ -1,0 +1,11 @@
+#This is an .ciscorouters example file.
+#It describes the location and description of the different fields contained. This file is used by expect scripts as con, cs, saverouterconfig and ciscobackup
+#This file must be defined with useful contents at your $HOME directory (e.g. ~/.ciscorouters).
+#This file must be readonly access and only to the username, as it contains the plaintext passwords saved.
+#Jose Antonio Montes 2011
+#Field names are following the position order, and are separated by spaces:
+#nick_name Window_name router_manageable_IP username user_password enable_password access_method (ssh or telnet).
+#examples:
+
+bgp1 BGP_sp_Mad_C01 10.10.10.1 user password enablepassword ssh 
+bgp4 BGP_sp_Mad_I04 10.10.10.4 charlie justguessme donttelltoanyone telnet 
