@@ -69,18 +69,35 @@ Be warned that the output is free of any sort of pagination, so you can pipe the
 
 INSTALL NOTES:
 
-To download the files contained into this project you need the Git client (use yum install git or either apt-get install git, depending of your distro)  and then, from a command line into a separated directory do:
+To download the files contained into this project from a zip or a tar.gz file you can download directly from the github project web site:
 
-  git clone git@github.com:jamontes/ciscotools.git
+  https://github.com/jamontes/ciscotools
 
-Then copy the script files into your bin directory, and define and populate the ~/.ciscorouters with usefull details to start using the scripts.
+Then copy the script files into your bin directory, and create and populate the ~/.ciscorouters with valid data to start using the scripts.
 
 Note: Use them without any warranty.
 
+
+COLLABORATIONS:
+
+If you want to freely contribute with ammends and suggestions to the project of this plublic repo, then you need to install the git client (use yum install git or either apt-get install git, depending of your distro)  to clone the repository from github into a local directory for your use. Once git is installed, from a command line type:
+
+  git clone git://github.com/jamontes/ciscotools.git your_local_directory
+
 Any suggestions and enhancements of the code would be very wellcome. Please use the Git magic to update any branches or the master branch to the public repository at github.
+
+
+For a wonderful guide on Git you can consult the following website: 
+
+  progit.org
+
+
+The wonderfull magic access stuff is due to Expect (TCL based) programming language:  http://en.wikipedia.org/wiki/Expect
 
 
 TODO: 
 
 * Try to handle with encripted passwords instead of plaintext ones into the ./ciscorouters file.
 * Include more scripts for automated tasks.
+
+
