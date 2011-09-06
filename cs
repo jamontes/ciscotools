@@ -22,7 +22,7 @@ foreach router $routers_list {
 		set enpassword	[lindex $router 5] 
 		set isssh	[lindex $router 6] 
 
-		if { ${isssh} == "ssh" } {
+		if { ${isssh} == "ssh" || ${isssh} == "jun" } {
 
 		  spawn ssh ${user}@${IP}
 		  expect {
@@ -37,9 +37,15 @@ foreach router $routers_list {
 		  }
 
 		  expect ">"
-		  send "en\r"
-		  expect "assword: "
-		  send "$enpassword\r"
+
+      if { ${isssh} == "ssh" } {
+
+		    send "en\r"
+		    expect "assword: "
+		    send "$enpassword\r"
+
+      }
+
 		  interact
 		  exit
 
@@ -58,7 +64,6 @@ foreach router $routers_list {
 		}
 
 	}
-
 
 }
 

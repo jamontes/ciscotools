@@ -4,7 +4,7 @@ All the router/switch access info must be well defined and contained into a conf
 The ~/.ciscorouters must be useronly read access, as it contains the user and enable password in plaintext for each router/switch on the core network.
 These scripts are bash and expect scripts, and depends on xterm, ssh, telnet, bash and expect to correct execution.
 
-2011 Jose Antonio Montes. You can freely use, copy, modify, and distribute as you need without any restrictions.
+2011 Jose Antonio Montes. You can freely use, copy, modify, and distribute as you need without any restrictions and warranty.
 
 Please be warned that you need to know the enable passwords of all the core routers/switches defined into ~/.ciscorouters, and those passwords will be stored into that file in pure plaintext, so keep the access permission restricted only for you and nobody else.
 
@@ -100,4 +100,6 @@ TODO:
 * Try to handle with encripted passwords instead of plaintext ones into the ./ciscorouters file.
 * Include more scripts for automated tasks.
 
+CHANGELOT:
 
+* Added Juniper access support to *cs* script. In order to get access to a juniper router, define the access type at ~/.ciscorouters with *jun* instead of *ssh* or *telnet*, and define a dummy (i.e. useless) enable password, as Juniper equipments don't use it.
